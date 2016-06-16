@@ -1,2 +1,2 @@
 # docker-bootstrap-dht
-The BitTorrent DHT bootstrap server in Docker.
+A Docker Image containing the official [BitTorrent DHT bootstrap server](https://github.com/bittorrent/bootstrap-dht).
