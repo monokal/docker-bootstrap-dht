@@ -4,13 +4,14 @@ A Docker Image containing the official [BitTorrent DHT bootstrap][1] server whic
 #### Running a DHT bootstrap server
 ```sh
 docker run -d \
-           --restart=unless-stopped \
-           -p 6881:6881 \
-           --name bootstrap-dht \
-           monokal/bootstrap-dht:latest \
-           --threads 1 \
-           --nodes 10 \
-           --ping-queue 10
+    --restart=unless-stopped \
+    -p 6881:6881 \
+    --name bootstrap-dht \
+    monokal/bootstrap-dht:latest \
+    0.0.0.0 \
+    --threads 1 \
+    --nodes 10 \
+    --ping-queue 10
 ```
 
 Further details on the available `bootstrap-dht` parameters can be found [here][1].
