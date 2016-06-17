@@ -12,7 +12,7 @@ docker run -d \
     --threads 1
 ```
 
-Further details on the available `bootstrap-dht` parameters can be found [here][1].
+Further details on the available `bootstrap-dht` options can be found [here][1].
 
 #### Building the Docker Image
 ```sh
