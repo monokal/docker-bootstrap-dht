@@ -14,7 +14,7 @@ In addition to this, nodes whose node ID don't match [the specification][2] will
 
 ## Usage
 ### Run
-```
+```bash
 docker run -d \
            --restart=unless-stopped \
            -p 6881:6881 \
