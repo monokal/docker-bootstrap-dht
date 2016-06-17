@@ -9,9 +9,7 @@ docker run -d \
     --name bootstrap-dht \
     monokal/bootstrap-dht:latest \
     0.0.0.0 \
-    --threads 1 \
-    --nodes 10 \
-    --ping-queue 10
+    --threads 1
 ```
 
 Further details on the available `bootstrap-dht` parameters can be found [here][1].
