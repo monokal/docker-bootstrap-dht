@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Docker DHT bootstrap server by monokal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Docker DHT bootstrap server</h1>
+      <h2 class="project-tagline">A Docker Image containing the official BitTorrent DHT bootstrap server.</h2>
+      <a href="https://github.com/monokal/docker-bootstrap-dht" class="btn">View on GitHub</a>
+      <a href="https://github.com/monokal/docker-bootstrap-dht/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/monokal/docker-bootstrap-dht/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="docker-dht-bootstrap-server" class="anchor" href="#docker-dht-bootstrap-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docker DHT bootstrap server</h1>
+
+<p>A Docker Image containing the official <a href="https://github.com/bittorrent/bootstrap-dht">BitTorrent DHT bootstrap</a> server which BitTorrent clients can use as an introducer to a DHT network, such as the public ones running at <code>router.utorrent.com</code> and <code>router.bittorrent.com</code>.</p>
+
+<h4>
+<a id="running-a-dht-bootstrap-server" class="anchor" href="#running-a-dht-bootstrap-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running a DHT bootstrap server</h4>
+
+<div class="highlight highlight-source-shell"><pre>docker run -d \
+    --restart=unless-stopped \
+    -p 6881:6881 \
+    --net=host \
+    --name bootstrap-dht \
+    monokal/bootstrap-dht:latest \
+    0.0.0.0 \
+    --threads 1</pre></div>
+
+<p>Further details on the available <code>bootstrap-dht</code> options can be found <a href="https://github.com/bittorrent/bootstrap-dht">here</a>.</p>
+
+<h4>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h4>
+
+<p>A <code>test_dht.py</code> script can be found in the <a href="https://github.com/bittorrent/bootstrap-dht">bootstrap-dht repo</a>.</p>
+
+<div class="highlight highlight-source-shell"><pre>./test_dht.py 0.0.0.0 6881
+
+=== TESTING DHT PING ===
+ping 69 -<span class="pl-k">&gt;</span> 0.0.0.0:6881
+<span class="pl-k">&lt;</span>--  {<span class="pl-s"><span class="pl-pds">'</span>y<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>r<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ip<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>\x7f\x00\x00\x01\x90t<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>r<span class="pl-pds">'</span></span>: {<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>HgNg#\x94\x82\xda\xbc\xec4S\xff\x1f\x95x\xfe\xec\xbd\x00<span class="pl-pds">'</span></span>}, <span class="pl-s"><span class="pl-pds">'</span>t<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>69<span class="pl-pds">'</span></span>}
+<span class="pl-k">***</span> Passed <span class="pl-k">***</span>
+find_node 209 -<span class="pl-k">&gt;</span> 0.0.0.0:6881
+<span class="pl-k">&lt;</span>--  {<span class="pl-s"><span class="pl-pds">'</span>y<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>r<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ip<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>\x7f\x00\x00\x01\x90t<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>r<span class="pl-pds">'</span></span>: {<span class="pl-s"><span class="pl-pds">'</span>nodes<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>HgNg#\x94\x82\xda\xbc\xec4S\xff\x1f\x95x\xfe\xec\xbd\x00<span class="pl-pds">'</span></span>}, <span class="pl-s"><span class="pl-pds">'</span>t<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>209<span class="pl-pds">'</span></span>}
+received 0 nodes
+<span class="pl-k">***</span> Passed <span class="pl-k">***</span></pre></div>
+
+<h4>
+<a id="building-the-docker-image" class="anchor" href="#building-the-docker-image" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Building the Docker Image</h4>
+
+<div class="highlight highlight-source-shell"><pre>docker build -t monokal/bootstrap-dht:latest <span class="pl-c1">.</span></pre></div>
+
+<h4>
+<a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributions</h4>
+
+<p>To contribute to this Docker Image, just open a <a href="https://github.com/monokal/docker-bootstrap-dht/pulls">pull request</a>. To contribute to the <code>bootstrap-dht</code> source, head over to the <a href="https://github.com/bittorrent/bootstrap-dht">official repo</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/monokal/docker-bootstrap-dht">Docker DHT bootstrap server</a> is maintained by <a href="https://github.com/monokal">monokal</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
