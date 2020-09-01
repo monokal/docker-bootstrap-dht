@@ -1,5 +1,4 @@
 FROM alpine:latest
-MAINTAINER Daniel Middleton <d@monokal.io>
 
 ENV APK_DEPS wget tar git alpine-sdk linux-headers
 ENV BOOST_URL https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.gz
